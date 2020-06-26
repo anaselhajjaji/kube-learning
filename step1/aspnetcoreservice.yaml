@@ -1,31 +1,31 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: step1-kubernetes
+  name: aspnetcoreservice
 spec:
   type: LoadBalancer
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: aspnetcore-service
+    app: aspnetcoreapp
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aspnetcore-service
+  name: aspnetcoreapp
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: aspnetcore-service
+      app: aspnetcoreapp
   template:
     metadata:
       labels:
-        app: aspnetcore-service
+        app: aspnetcoreapp
     spec:
       containers:
-      - name: aspnetcore-service
-        image: anaselhajjaji/aspnetcoreservice:1.0.0
+      - name: aspnetcoreapp
+        image: anaselhajjaji/aspnetcoreservice:2.0.0
         ports:
         - containerPort: 80
