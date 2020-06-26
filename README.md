@@ -12,3 +12,8 @@ Having an ASP.NET Core service with 3 replicas deployed in kubernetes and load b
 - To get service ip address: `kubectl get service step1-kubernetes`, external ip address will not be attributed because we are in local kubernetes.
 - To get access to the service: `minikube service step1-kubernetes`, minikube will create a tunnel to get access to the service from the host machine.
 
+# Step 2
+
+Add an ASP.NET Core GRPC Service and make the first service talk to it using ASP.NET Core hosted services.
+
+[IN PROGRESS]
