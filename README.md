@@ -16,4 +16,4 @@ Having an ASP.NET Core service with 3 replicas deployed in kubernetes and load b
 
 Add an ASP.NET Core GRPC Service and make the first service talk to it using ASP.NET Core hosted services.
 
-[IN PROGRESS]
+- Deploy the service: `kubectl apply -f step2/aspnetcoregrpcservice.yaml`

@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aspnetcoregrpcservice
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5001
+    targetPort: 5001
+  selector:
+    app: aspnetcoregrpcapp
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aspnetcoregrpcapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: aspnetcoregrpcapp
+  template:
+    metadata:
+      labels:
+        app: aspnetcoregrpcapp
+    spec:
+      containers:
+      - name: aspnetcoregrpcapp
+        image: anaselhajjaji/aspnetcoregrpcservice:1.0.0
+        ports:
+        - containerPort: 5001
