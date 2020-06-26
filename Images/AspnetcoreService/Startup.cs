@@ -21,6 +21,7 @@ namespace AspnetcoreService
         {
             services.AddControllers();
             services.AddHostedService<GrpcHostedService>();
+            services.AddHostedService<KafkaHostedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,44 @@
+version: '3.7'
+
+networks:
+  back-tier:
+
+services:
+
+  aspnetcoreservice: 
+    build: ./AspnetcoreService
+    ports:
+      - 80:80
+    networks:
+      - back-tier
+    restart: always
+
+  aspnetcoregrpcservice: 
+    build: ./AspnetcoreGrpcService
+    expose:
+      - 5001
+    networks:
+      - back-tier
+    restart: always
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      - back-tier
+    restart: always
+
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - back-tier
+    restart: always
+      

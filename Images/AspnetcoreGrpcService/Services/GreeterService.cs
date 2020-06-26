@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Confluent.Kafka;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace AspnetcoreGrpcService
 {
@@ -20,10 +20,36 @@ namespace AspnetcoreGrpcService
             logger.LogInformation(
                 "Received a GRPC request: {Request}", request.Name);
 
+            PublishKafkaMessage();
+
             return Task.FromResult(new HelloReply
             {
                 Message = "Hello " + request.Name
             });
+        }
+
+        private void PublishKafkaMessage()
+        {
+            var config = new ProducerConfig
+            {
+                BootstrapServers = "kafka:9092",
+                ClientId = Dns.GetHostName()
+            };
+
+            using (var producer = new ProducerBuilder<Null, string>(config).Build())
+            {
+                var t = producer.ProduceAsync("services-topic", new Message<Null, string> { Value = $"Kafka GRPC Response from { Environment.MachineName }" });
+                t.ContinueWith(task => {
+                    if (task.IsFaulted)
+                    {
+                        logger.LogWarning("Not able to publish message to Kafka.");
+                    }
+                    else
+                    {
+                        logger.LogInformation($"Wrote to offset: {task.Result.Offset}");
+                    }
+                });
+            }
         }
     }
 }
