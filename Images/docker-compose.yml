@@ -1,0 +1,23 @@
+version: '3.7'
+
+networks:
+  back-tier:
+
+services:
+
+  aspnetcoreservice: 
+    build: ./AspnetcoreService
+    ports:
+      - 80:80
+    networks:
+      - back-tier
+    restart: always
+
+  aspnetcoregrpcservice: 
+    build: ./AspnetcoreGrpcService
+    expose:
+      - 5001
+    networks:
+      - back-tier
+    restart: always
+      
