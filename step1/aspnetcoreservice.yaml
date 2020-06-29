@@ -26,6 +26,6 @@ spec:
     spec:
       containers:
       - name: aspnetcoreapp
-        image: anaselhajjaji/aspnetcoreservice:2.0.0
+        image: anaselhajjaji/aspnetcoreservice:latest
         ports:
         - containerPort: 80

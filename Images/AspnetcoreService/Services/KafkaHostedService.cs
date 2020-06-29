@@ -22,7 +22,7 @@ namespace AspnetcoreService.Services
 
             var config = new ConsumerConfig
             {
-                BootstrapServers = "kafka:9092",
+                BootstrapServers = "bootstrap.kafka.svc.cluster.local:9092",
                 GroupId = "services-group",
                 AutoOffsetReset = AutoOffsetReset.Earliest
             };

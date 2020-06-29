@@ -17,3 +17,7 @@ Having an ASP.NET Core service with 3 replicas deployed in kubernetes and load b
 Add an ASP.NET Core GRPC Service and make the first service talk to it using ASP.NET Core hosted services.
 
 - Deploy the service: `kubectl apply -f step2/aspnetcoregrpcservice.yaml`
+
+# Step 3
+
+- Deploy Kafka to kubernetes using instructions in: https://github.com/Yolean/kubernetes-kafka

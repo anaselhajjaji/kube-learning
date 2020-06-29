@@ -32,7 +32,7 @@ namespace AspnetcoreGrpcService
         {
             var config = new ProducerConfig
             {
-                BootstrapServers = "kafka:9092",
+                BootstrapServers = "bootstrap.kafka.svc.cluster.local:9092",
                 ClientId = Dns.GetHostName()
             };
 

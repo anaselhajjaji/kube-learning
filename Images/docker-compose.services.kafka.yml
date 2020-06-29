@@ -31,10 +31,12 @@ services:
 
   kafka:
     image: wurstmeister/kafka
+    hostname: bootstrap.kafka.svc.cluster.local
     ports:
       - "9092:9092"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ADVERTISED_PORT: "9092"
+      KAFKA_ADVERTISED_HOST_NAME: bootstrap.kafka.svc.cluster.local
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

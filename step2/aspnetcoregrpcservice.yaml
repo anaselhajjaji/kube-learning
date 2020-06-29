@@ -26,6 +26,6 @@ spec:
     spec:
       containers:
       - name: aspnetcoregrpcapp
-        image: anaselhajjaji/aspnetcoregrpcservice:1.0.0
+        image: anaselhajjaji/aspnetcoregrpcservice:latest
         ports:
         - containerPort: 5001
